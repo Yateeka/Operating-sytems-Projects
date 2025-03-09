@@ -13,7 +13,7 @@ import java.util.*;
  * 3. Waiting Time (WT): The time a process spends waiting before execution.
  *    It is calculated as Turnaround Time (TAT) - Burst Time (BT).
  * 
- * The program also calculates the average waiting time and turnaround time.
+ * The program also calculates the average waiting time and turnaround time
  */
 
 public class FCFS_Scheduling {
