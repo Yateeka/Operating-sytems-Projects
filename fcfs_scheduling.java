@@ -1,5 +1,21 @@
 import java.util.*;
 
+/**
+ * This class implements the First-Come, First-Served (FCFS) Scheduling algorithm.
+ * 
+ * FCFS is one of the easiest CPU scheduling algorithms. It schedules processes 
+ * in the order they arrive, meaning the first process that arrives gets executed first.
+ * 
+ * The key calculations involved are:
+ * 1. Completion Time (CT): The time when a process finishes execution.
+ * 2. Turnaround Time (TAT): The total time a process spends in the system.
+ *    It is calculated as Completion Time (CT) - Arrival Time (AT).
+ * 3. Waiting Time (WT): The time a process spends waiting before execution.
+ *    It is calculated as Turnaround Time (TAT) - Burst Time (BT).
+ * 
+ * The program also calculates the average waiting time and turnaround time
+ */
+
 public class FCFS_Scheduling {
 
     public static void fcfsScheduling(List<Process> processes) {
