@@ -17,14 +17,17 @@ import java.util.*;
  */
 public class priority_scheduling {
 
-    public static void fcfsScheduling(List<Process> processes) {
-        processes.sort(Comparator.comparingInt(p -> p.arrivalTime));
+    public static void priorityScheduling(List<Process> processes) {
+        // Sort by priority, then by arrival time for tie-breaking (lower priority number is higher priority)
+        processes.sort(Comparator.comparingInt((Process p) -> p.priority)
+                                 .thenComparingInt(p -> p.arrivalTime));
 
         int totalWaitingTime = 0;
         int totalTurnaroundTime = 0;
         int currentTime = 0;
 
         for (Process currentProcess : processes) {
+            // If current time is less than the process arrival time, move time to arrival time
             currentTime = Math.max(currentTime, currentProcess.arrivalTime) + currentProcess.burstTime;
             int turnaroundTime = currentTime - currentProcess.arrivalTime;
             int waitingTime = turnaroundTime - currentProcess.burstTime;
@@ -32,6 +35,7 @@ public class priority_scheduling {
             totalWaitingTime += waitingTime;
             totalTurnaroundTime += turnaroundTime;
 
+            // Print the result in the desired format
             System.out.println(currentProcess + " | Completion Time: " + currentTime +
                     " | Turnaround Time: " + turnaroundTime + " | Waiting Time: " + waitingTime);
         }
@@ -44,6 +48,6 @@ public class priority_scheduling {
     public static void main(String[] args) {
         List<Process> processes = ProcessReader.readProcesses("processes.txt");
         
-        fcfsScheduling(processes);
+        priorityScheduling(processes); // Call the priority scheduling method
     }
 }
