@@ -40,9 +40,9 @@ The file should contain process data in the following format:
 
 ### Compilation:
 To compile the program, run the following command:
-
+```bash
 javac priority_scheduling.java ProcessReader.java Process.java FCFS.java
-
+```
 ## Running the FCFS Scheduling Algorithm
 The **First-Come, First-Serve (FCFS) Scheduling** algorithm executes processes in the order they arrive.
 
