@@ -15,10 +15,11 @@ import java.util.*;
  * 
  * The average waiting time and turnaround time are calculated at the end of execution.
  */
-public class priority_scheduling {
+public class PriorityScheduling {
 
+    // Method to implement Priority Scheduling
     public static void priorityScheduling(List<Process> processes) {
-        // Sort by priority, then by arrival time for tie-breaking (lower priority number is higher priority)
+        // Sort processes by priority, then by arrival time (for tie-breaking)
         processes.sort(Comparator.comparingInt((Process p) -> p.priority)
                                  .thenComparingInt(p -> p.arrivalTime));
 
@@ -26,28 +27,42 @@ public class priority_scheduling {
         int totalTurnaroundTime = 0;
         int currentTime = 0;
 
+        // Loop through each process to calculate their completion, turnaround, and waiting times
         for (Process currentProcess : processes) {
-            // If current time is less than the process arrival time, move time to arrival time
+            // If current time is less than the process arrival time, move time to the process arrival time
             currentTime = Math.max(currentTime, currentProcess.arrivalTime) + currentProcess.burstTime;
+
+            // Calculate turnaround time
             int turnaroundTime = currentTime - currentProcess.arrivalTime;
+
+            // Calculate waiting time
             int waitingTime = turnaroundTime - currentProcess.burstTime;
 
+            // Accumulate total waiting and turnaround times
             totalWaitingTime += waitingTime;
             totalTurnaroundTime += turnaroundTime;
 
-            // Print the result in the desired format
-            System.out.println(currentProcess + " | Completion Time: " + currentTime +
-                    " | Turnaround Time: " + turnaroundTime + " | Waiting Time: " + waitingTime);
+            // Print out process information
+            System.out.println("PID: " + currentProcess.pid +
+                    " | Arrival: " + currentProcess.arrivalTime +
+                    " | Burst: " + currentProcess.burstTime +
+                    " | Priority: " + currentProcess.priority +
+                    " | Completion Time: " + currentTime +
+                    " | Turnaround Time: " + turnaroundTime +
+                    " | Waiting Time: " + waitingTime);
         }
 
+        // Calculate and print the average waiting and turnaround times
         int n = processes.size();
-        System.out.println("Average Turnaround Time: " + (double) totalTurnaroundTime / n);
-        System.out.println("Average Waiting Time: " + (double) totalWaitingTime / n);
+        System.out.printf("\nAverage Turnaround Time: %.2f%n", (double) totalTurnaroundTime / n);
+        System.out.printf("Average Waiting Time: %.2f%n", (double) totalWaitingTime / n);
     }
 
     public static void main(String[] args) {
+        // Ensure the correct path to the processes file
         List<Process> processes = ProcessReader.readProcesses("processes.txt");
-        
-        priorityScheduling(processes); // Call the priority scheduling method
+
+        // Call the priority scheduling method
+        priorityScheduling(processes);
     }
 }
