@@ -42,7 +42,7 @@ public class priority_scheduling {
     }
 
     public static void main(String[] args) {
-        List<Process> processes = ProcessReader.readProcesses("/Users/yateekagoyal/Desktop/OS/Operating-sytems-Projects/processes.txt");
+        List<Process> processes = ProcessReader.readProcesses("processes.txt");
         
         fcfsScheduling(processes);
     }
