@@ -43,3 +43,18 @@ To compile the program, run the following command:
 
 ```bash
 javac priority_scheduling.java ProcessReader.java Process.java FCFS.java
+
+## **Running the FCFS Scheduling Algorithm**
+The **First-Come, First-Serve (FCFS) Scheduling** algorithm executes processes in the order they arrive.
+
+### **Compiling FCFS Scheduling**
+To compile the **FCFS Scheduling** program, run:
+
+```bash
+javac FCFS_Scheduling.java ProcessReader.java Process.java
+
+After compilation, run the FCFS program using:
+java FCFS_Scheduling
+
+
+
