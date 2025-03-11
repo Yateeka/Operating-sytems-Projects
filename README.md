@@ -53,8 +53,8 @@ To compile the **FCFS Scheduling** program, run:
 ```bash
 javac FCFS_Scheduling.java ProcessReader.java Process.java
 
-After compilation, run the FCFS program using:
 java FCFS_Scheduling
+
 
 
 
