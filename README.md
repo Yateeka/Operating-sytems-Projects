@@ -7,8 +7,8 @@ This project implements two popular CPU scheduling algorithms:
 
 Both algorithms compute:
 - **Completion Time (CT)**: When the process finishes execution.
-- **Turnaround Time (TAT)**: \( \text{TAT} = \text{CT} - \text{Arrival Time} \)
-- **Waiting Time (WT)**: \( \text{WT} = \text{TAT} - \text{Burst Time} \)
+- **Turnaround Time (TAT)**: TAT = CT - Arrival Time
+- **Waiting Time (WT)**: WT = TAT - Burst Time
 - **Gantt Chart**: A visual representation of the process execution order.
 
 ## Features
