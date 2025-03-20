@@ -51,4 +51,24 @@ To compile the **FCFS Scheduling** program, run:
 
 ```bash
 javac FCFS_Scheduling.java ProcessReader.java Process.java
+```
+
+## Textual Gantt Chart Representation
+This program generates a textual Gantt chart for both **FCFS** and **Priority Scheduling** algorithms. The chart is displayed with the process execution order and completion times.
+
+### Example of Gantt Chart Output:
+
+**Textual Gantt Chart Representation (FCFS):**
+
+| P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 
+    5   8   10  11  15  17  20  22
+
+
+**Textual Gantt Chart Representation (Priority):**
+
+| P2 | P1 | P5 | P6 | P3 | P7 | P8 | P4
+    3   5   9   11  13  16  18  19
+
+
+
 
