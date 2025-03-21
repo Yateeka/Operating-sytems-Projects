@@ -1,12 +1,12 @@
 /*
  * This class defines a `Process` that represents a process in a scheduling system 
- * with four key attributes: PID (Process ID), arrival time, burst time, and priority.
+ * with four key attributes: PID aka Process ID, arrival time, burst time, and priority.
  * 
  * Attributes:
  * - `pid`: The unique identifier for the process. This integer allows the system 
  *   to track and differentiate processes.
  * - `arrivalTime`: The time at which the process arrives in the system. This value 
- *   helps determine the order in which processes are handled in scheduling algorithms.
+ *   helps determine the order in which processes are handled in scheduling algorithms. 
  * - `burstTime`: The total CPU time required by the process for execution. This 
  *   determines how long the process will run in the CPU.
  * - `priority`: A value representing the importance of the process. Higher priority 
