@@ -7,7 +7,7 @@ import java.util.*;
  * FCFS schedules processes in the order they arrive, meaning the first process that 
  * arrives gets executed first.
  * 
- * The key calculations involved are:
+ * Key calculations involved are:
  * 1. Completion Time (CT): The time when a process finishes execution.
  * 2. Turnaround Time (TAT): The total time a process spends in the system.
  *    It is calculated as Completion Time (CT) - Arrival Time (AT).
