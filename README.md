@@ -69,6 +69,6 @@ This program generates a textual Gantt chart for both **FCFS** and **Priority Sc
 | P2 | P1 | P5 | P6 | P3 | P7 | P8 | P4
     3   5   9   11  13  16  18  19
 ```
-
+# Project 2 Thread-Based Process Simulation and Synchronization
 
 
