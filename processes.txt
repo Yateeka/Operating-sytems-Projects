@@ -7,4 +7,3 @@ PID Arrival_Time Burst_Time Priority
 6 7 2 2
 7 8 3 1
 8 9 2 3
-
