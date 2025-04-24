@@ -13,23 +13,24 @@ public class ProcessSimulationProject2_Logger {
             this.burstTime = burstTime;
         }
 
-        public void run() {
-            long start = System.currentTimeMillis();
-            System.out.println("[" + start + "] Process " + pid + " started.");
+private static final Semaphore cpu = new Semaphore(1); // Shared among all threads
 
-            try {
-                Thread.sleep(burstTime * 1000); // Simulate CPU burst
-            } catch (InterruptedException e) {
-                System.out.println("[" + System.currentTimeMillis() + "] Process " + pid + " was interrupted.");
-            }
-
-            long end = System.currentTimeMillis();
-            System.out.println("[" + end + "] Process " + pid + " finished.");
-
-            // Log execution summary
-            ProcessLogger.log(pid, start, end);
-        }
+public void run() {
+    long start = System.currentTimeMillis();
+    try {
+        cpu.acquire(); // Lock the CPU
+        System.out.println("[" + start + "] Process " + pid + " started.");
+        Thread.sleep(burstTime * 1000); // Simulate CPU burst
+        long end = System.currentTimeMillis();
+        System.out.println("[" + end + "] Process " + pid + " finished.");
+        ProcessLogger.log(pid, start, end);
+    } catch (InterruptedException e) {
+        System.out.println("[" + System.currentTimeMillis() + "] Process " + pid + " was interrupted.");
+    } finally {
+        cpu.release(); // Unlock the CPU
     }
+}
+
 
     public static void main(String[] args) {
         List<ProcessThread> processes = new ArrayList<>();
