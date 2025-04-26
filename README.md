@@ -11,24 +11,17 @@ Each process runs as a thread, ensuring safe CPU access and structured output to
 The objective of this project is to simulate real-time process execution using threads and explore how operating systems manage synchronization among concurrent processes.  
 We modeled process execution using threads, solved synchronization challenges with semaphores, and provided detailed, time-stamped logging for validation and analysis.
 
----
-
 ## Project Breakdown
 
 | Part | Member           | Responsibilities |
-|------|------------------|----------------|
-| **A** | Dua Spall        | - Created `ProcessThread` class to simulate processes using `Thread.sleep()`  
-- Read process data dynamically from `processes.txt`  
-- Logged start and end of thread execution |
-| **B** | Melanie          | - Implemented synchronization using Java `Semaphore`  
-- Modeled CPU as a critical resource  
-- Handled safe locking and unlocking to prevent deadlocks |
-| **C** | Yateeka Goyal    | - Designed detailed logging format using timestamps  
-- Verified thread execution order for correctness  
-- Improved output formatting for readability |
-| **D** | Khushi Mishra    | - Integrated all modules into a runnable program (`ProcessSimulationProject2_Logger.java`)  
-- Added timestamped logs and final thread execution summary table  
-- Conducted final testing and ensured smooth module integration |
+|------|------------------|------------------|
+| **A** | Dua Spall        | - Created `ProcessThread` class to simulate processes using `Thread.sleep()`<br>- Read process data dynamically from `processes.txt`<br>- Logged start and end of thread execution |
+| **B** | Melanie          | - Implemented synchronization using Java `Semaphore`<br>- Modeled CPU as a critical resource<br>- Handled safe locking and unlocking to prevent deadlocks |
+| **C** | Yateeka Goyal    | - Designed detailed logging format using timestamps<br>- Verified thread execution order for correctness<br>- Improved output formatting for readability |
+| **D** | Khushi Mishra    | - Integrated all modules into a runnable program (`ProcessSimulationProject2_Logger.java`)<br>- Added timestamped logs and final thread execution summary table<br>- Conducted final testing and ensured smooth module integration |
+
+---
+
 
 ---
 
