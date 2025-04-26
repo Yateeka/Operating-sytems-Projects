@@ -1,7 +1,10 @@
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.Semaphore;
 
 public class ProcessSimulationProject2_Logger {
+
+    private static final Semaphore cpu = new Semaphore(1); // Moved HERE!
 
     // Inner class to simulate a process as a thread
     static class ProcessThread extends Thread {
@@ -13,23 +16,29 @@ public class ProcessSimulationProject2_Logger {
             this.burstTime = burstTime;
         }
 
-private static final Semaphore cpu = new Semaphore(1); // Shared among all threads
-
-public void run() {
-    long start = System.currentTimeMillis();
-    try {
-        cpu.acquire(); // Lock the CPU
-        System.out.println("[" + start + "] Process " + pid + " started.");
-        Thread.sleep(burstTime * 1000); // Simulate CPU burst
-        long end = System.currentTimeMillis();
-        System.out.println("[" + end + "] Process " + pid + " finished.");
-        ProcessLogger.log(pid, start, end);
-    } catch (InterruptedException e) {
-        System.out.println("[" + System.currentTimeMillis() + "] Process " + pid + " was interrupted.");
-    } finally {
-        cpu.release(); // Unlock the CPU
-    }
-}
+        public void run() {
+            try {
+                System.out.println("[" + System.currentTimeMillis() + " ms] Process " + pid + " waiting to acquire CPU...");
+                cpu.acquire(); // Lock the CPU
+                System.out.println("[" + System.currentTimeMillis() + " ms] Process " + pid + " acquired CPU.");
+                
+                long start = System.currentTimeMillis();
+                System.out.println("[" + start + " ms] Process " + pid + " started.");
+                
+                Thread.sleep(burstTime * 1000);
+                
+                long end = System.currentTimeMillis();
+                System.out.println("[" + end + " ms] Process " + pid + " finished.");
+                
+                ProcessLogger.log(pid, start, end);
+            } catch (InterruptedException e) {
+                System.out.println("[" + System.currentTimeMillis() + " ms] Process " + pid + " was interrupted.");
+            } finally {
+                System.out.println("[" + System.currentTimeMillis() + " ms] Process " + pid + " released CPU.");
+                cpu.release(); // Unlock the CPU
+            }
+        }
+    }   
 
 
     public static void main(String[] args) {
@@ -38,7 +47,10 @@ public void run() {
         try (BufferedReader br = new BufferedReader(new FileReader("processes.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] parts = line.trim().split("\\s+");
+                line = line.trim();
+                if (line.isEmpty()) continue; // Skip empty lines
+
+                String[] parts = line.split("\\s+");
                 int pid = Integer.parseInt(parts[0]);
                 int burstTime = Integer.parseInt(parts[1]);
                 processes.add(new ProcessThread(pid, burstTime));
@@ -59,13 +71,11 @@ public void run() {
             try {
                 p.join();
             } catch (InterruptedException e) {
-                System.out.println("Main thread interrupted.");
+                System.out.println("Main thread interrupted while waiting.");
             }
         }
 
-        // Print execution summary (BONUS FEATURE)
+        // Print execution summary after all threads complete
         ProcessLogger.printSummary();
     }
 }
-
-
