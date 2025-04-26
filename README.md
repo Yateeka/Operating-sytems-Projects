@@ -1,76 +1,105 @@
-# Project 2 Thread-Based Process Simulation and Synchronization
 
-###  Overview
-This part of the project simulates process scheduling using **Java threads** and explores **synchronization, logging**, and **team-based integration**. It builds upon Part 1 by simulating the execution of each process as a thread, managing their interactions through synchronization primitives, and logging activity for testing and analysis.
+# Project 2: Thread-Based Process Simulation and Synchronization
+
+## Description
+Simulates CPU process scheduling using Java threads, with synchronization handled via semaphores and detailed execution logging.  
+Each process runs as a thread, ensuring safe CPU access and structured output to verify proper scheduling behavior.
 
 ---
 
-###  Project Breakdown (Team Contributions)
+## Objective
+The objective of this project is to simulate real-time process execution using threads and explore how operating systems manage synchronization among concurrent processes.  
+We modeled process execution using threads, solved synchronization challenges with semaphores, and provided detailed, time-stamped logging for validation and analysis.
 
-| Part | Name             | Responsibility |
+---
+
+## Project Breakdown
+
+| Part | Member           | Responsibilities |
 |------|------------------|----------------|
-| **A** | Dua Spall        | **Thread Simulation & Input Handling**  
-- Created `ProcessThread` to simulate each process using `Thread.sleep()`  
-- Read process data from `processes.txt`  
-- Ensured each thread logs start and end of execution |
-| **B** | Melanie           | **Synchronization Implementation**  
-- Implemented a classic sync problem (e.g., Producer-Consumer)  
-- Used Java semaphores or locks for safe resource access  
-- Handled potential deadlocks and race conditions |
-| **C** | Yateeka Goyal     | **Logging & Output Verification**  
-- Designed a consistent logging format for thread actions  
-- Verified order of thread execution  
-- Assisted with debugging and ensuring readable outputs |
-| **D** | Khushi Mishra     | **Integration & Bonus Feature**  
-- Integrated all modules into one runnable class (`ProcessSimulationProject2_Logger.java`)  
-- Added a **bonus feature**: time-stamped logging + thread execution summary table  
-- Participated in final testing and made sure all modules worked smoothly together |
+| **A** | Dua Spall        | - Created `ProcessThread` class to simulate processes using `Thread.sleep()`  
+- Read process data dynamically from `processes.txt`  
+- Logged start and end of thread execution |
+| **B** | Melanie          | - Implemented synchronization using Java `Semaphore`  
+- Modeled CPU as a critical resource  
+- Handled safe locking and unlocking to prevent deadlocks |
+| **C** | Yateeka Goyal    | - Designed detailed logging format using timestamps  
+- Verified thread execution order for correctness  
+- Improved output formatting for readability |
+| **D** | Khushi Mishra    | - Integrated all modules into a runnable program (`ProcessSimulationProject2_Logger.java`)  
+- Added timestamped logs and final thread execution summary table  
+- Conducted final testing and ensured smooth module integration |
 
 ---
 
-###  Input Format
-The simulation uses a simplified `processes.txt` file (without header), formatted as:
+## Input Format
+The simulation expects a `processes.txt` file with the following format:
 
 ```
-<ProcessID> <BurstTime>
+<ProcessID> <BurstTime> <ProcessID> <BurstTime> ...
 ```
 
 Example:
 ```
-1 3
-2 2
-3 1
+1 3 2 2 3 1
 ```
+
+- `ProcessID`: Unique identifier for the process.
+- `BurstTime`: CPU time in seconds.
+
+No header line required.
 
 ---
 
-###  How to Run
+## How to Compile and Run
 
-**1. Compile all source files:**
-```bash
-javac *.java
-```
-
-**2. Run the integrated thread simulation logger:**
-```bash
-java ProcessSimulationProject2_Logger
-```
+1. Open a terminal and navigate to the project directory.
+2. Compile all Java files:
+   ```bash
+   javac *.java
+   ```
+3. Run the simulation:
+   ```bash
+   java ProcessSimulationProject2_Logger
+   ```
 
 ---
 
-###  Sample Output
-```text
-[1745213041572] Process 1 started.
-[1745213041599] Process 1 finished.
-...
+## Example Output
+```
+[1745213041572 ms] Process 1 waiting to acquire CPU...
+[1745213041575 ms] Process 1 acquired CPU.
+[1745213041576 ms] Process 1 started.
+[1745213044578 ms] Process 1 finished.
+[1745213044579 ms] Process 1 released CPU.
 
 === Thread Execution Summary ===
-PID 1 | Start: 1745213041572 | End: 1745213041599 | Duration: 27 ms
-...
+PID 1 | Start: 1745213041576 ms | End: 1745213044578 ms | Duration: 2002 ms
 ```
 
 ---
 
-###  Bonus Feature (Implemented by Khushi Mishra)
-- **Timestamped Logs:** Threads log start and end times using `System.currentTimeMillis()`
-- **Summary Table:** After all threads finish, a table is printed showing PID, start time, end time, and duration
+## Features
+
+- Thread Simulation: Each process executes as a separate Java thread.
+- Synchronization: CPU access managed via Java Semaphore, ensuring only one process occupies the CPU at a time.
+- Logging System: Each significant thread action (waiting, acquiring, starting, finishing, releasing) is timestamped.
+- Bonus Feature (Integration): Final execution summary table showing each process's PID, start time, end time, and duration.
+
+---
+
+## Files Included
+
+- `ProcessSimulationProject2_Logger.java` — Main class managing thread creation and execution
+- `ProcessLogger.java` — Helper class for structured logging and summary generation
+- `processes.txt` — Input file containing process information
+- `README.md` — Project documentation
+
+---
+
+## Contributors
+
+- Dua Spall — Thread simulation and input handling
+- Melanie — Synchronization and deadlock prevention
+- Yateeka Goyal — Logging design and output verification
+- Khushi Mishra — Module integration and bonus feature implementation
