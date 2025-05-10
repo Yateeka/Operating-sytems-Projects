@@ -1,74 +1,98 @@
-# CPU Scheduling Algorithms: Priority Scheduling and First-Come, First-Serve (FCFS)
 
-## Overview
-This project implements two popular CPU scheduling algorithms:
-1. **Priority Scheduling**: Processes are scheduled based on priority. If two processes have the same priority, they follow **First-Come, First-Serve (FCFS)**.
-2. **First-Come, First-Serve (FCFS)**: Processes are executed in the order they arrive.
+# Project 2: Thread-Based Process Simulation and Synchronization
 
-Both algorithms compute:
-- **Completion Time (CT)**: When the process finishes execution.
-- **Turnaround Time (TAT)**: TAT = CT - Arrival Time
-- **Waiting Time (WT)**: WT = TAT - Burst Time
-- **Gantt Chart**: A visual representation of the process execution order.
+## Description
+Simulates CPU process scheduling using Java threads, with synchronization handled via semaphores and detailed execution logging.  
+Each process runs as a thread, ensuring safe CPU access and structured output to verify proper scheduling behavior.
+
+---
+
+## Objective
+The objective of this project is to simulate real-time process execution using threads and explore how operating systems manage synchronization among concurrent processes.  
+We modeled process execution using threads, solved synchronization challenges with semaphores, and provided detailed, time-stamped logging for validation and analysis.
+
+## Project Breakdown
+
+| Part | Member           | Responsibilities |
+|------|------------------|------------------|
+| **A** | Dua Spall        | - Created `ProcessThread` class to simulate processes using `Thread.sleep()`<br>- Read process data dynamically from `processes.txt`<br>- Logged start and end of thread execution |
+| **B** | Melanie          | - Implemented synchronization using Java `Semaphore`<br>- Modeled CPU as a critical resource<br>- Handled safe locking and unlocking to prevent deadlocks |
+| **C** | Yateeka Goyal    | - Designed detailed logging format using timestamps<br>- Verified thread execution order for correctness<br>- Improved output formatting for readability |
+| **D** | Khushi Mishra    | - Integrated all modules into a runnable program (`ProcessSimulationProject2_Logger.java`)<br>- Added timestamped logs and final thread execution summary table<br>- Conducted final testing and ensured smooth module integration |
+
+---
+
+
+---
+
+## Input Format
+The simulation expects a `processes.txt` file with the following format:
+
+```
+<ProcessID> <BurstTime> <ProcessID> <BurstTime> ...
+```
+
+Example:
+```
+1 3 2 2 3 1
+```
+
+- `ProcessID`: Unique identifier for the process.
+- `BurstTime`: CPU time in seconds.
+
+No header line required.
+
+---
+
+## How to Compile and Run
+
+1. Open a terminal and navigate to the project directory.
+2. Compile all Java files:
+   ```bash
+   javac *.java
+   ```
+3. Run the simulation:
+   ```bash
+   java ProcessSimulationProject2_Logger
+   ```
+
+---
+
+## Example Output
+```
+[1745213041572 ms] Process 1 waiting to acquire CPU...
+[1745213041575 ms] Process 1 acquired CPU.
+[1745213041576 ms] Process 1 started.
+[1745213044578 ms] Process 1 finished.
+[1745213044579 ms] Process 1 released CPU.
+
+=== Thread Execution Summary ===
+PID 1 | Start: 1745213041576 ms | End: 1745213044578 ms | Duration: 2002 ms
+```
+
+---
 
 ## Features
-- Reads process data from a file (`processes.txt`).
-- Implements **Priority Scheduling** and **FCFS**.
-- Computes **waiting time**, **turnaround time**, and **completion time**.
-- Displays a **Gantt Chart** for both scheduling algorithms.
 
-## Input File Format (`processes.txt`)
-The file should contain process data in the following format:
+- Thread Simulation: Each process executes as a separate Java thread.
+- Synchronization: CPU access managed via Java Semaphore, ensuring only one process occupies the CPU at a time.
+- Logging System: Each significant thread action (waiting, acquiring, starting, finishing, releasing) is timestamped.
+- Bonus Feature (Integration): Final execution summary table showing each process's PID, start time, end time, and duration.
 
-| **PID** | **Arrival Time** | **Burst Time** | **Priority** |
-|---------|------------------|----------------|--------------|
-| 1       | 0                | 5              | 2            |
-| 2       | 2                | 3              | 1            |
-| 3       | 4                | 2              | 3            |
-| 4       | 5                | 1              | 4            |
-| 5       | 6                | 4              | 2            |
-| 6       | 7                | 2              | 2            |
-| 7       | 8                | 3              | 1            |
-| 8       | 9                | 2              | 3            |
+---
 
-- **PID**: Process ID
-- **Arrival Time**: When the process enters the system.
-- **Burst Time**: Execution time required by the process.
-- **Priority**: Lower number indicates higher priority.
+## Files Included
 
-## Running the Program
+- `ProcessSimulationProject2_Logger.java` — Main class managing thread creation and execution
+- `ProcessLogger.java` — Helper class for structured logging and summary generation
+- `processes.txt` — Input file containing process information
+- `README.md` — Project documentation
 
-### Compilation:
-To compile the program, run the following command:
-```bash
-javac priority_scheduling.java ProcessReader.java Process.java FCFS.java
-```
-## Running the FCFS Scheduling Algorithm
-The **First-Come, First-Serve (FCFS) Scheduling** algorithm executes processes in the order they arrive.
+---
 
-### **Compiling FCFS Scheduling**
-To compile the **FCFS Scheduling** program, run:
+## Contributors
 
-```bash
-javac FCFS_Scheduling.java ProcessReader.java Process.java
-```
-
-## Textual Gantt Chart Representation
-This program generates a textual Gantt chart for both **FCFS** and **Priority Scheduling** algorithms. The chart is displayed with the process execution order and completion times.
-
-### Example of Gantt Chart Output:
-
-**Textual Gantt Chart Representation (FCFS):*
- ```bash
-| P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 
-    5   8   10  11  15  17  20  22
-```
-
-**Textual Gantt Chart Representation (Priority):**
-```bash
-| P2 | P1 | P5 | P6 | P3 | P7 | P8 | P4
-    3   5   9   11  13  16  18  19
-```
-
-
-
+- Dua Spall — Thread simulation and input handling
+- Melanie — Synchronization and deadlock prevention
+- Yateeka Goyal — Logging design and output verification
+- Khushi Mishra — Module integration and bonus feature implementation
